@@ -11,9 +11,10 @@
 regularly use in my work—primarily for data summarisation, presentation,
 and formatting.
 
-The aim of this package is twofold: - To simplify repetitive workflows
-in my day-to-day R projects. - To build confidence and familiarity with
-R package development best practices.
+The aim of this package is twofold:  
+- To simplify repetitive workflows in my day-to-day R projects.  
+- To build confidence and familiarity with R package development best
+practices.
 
 ------------------------------------------------------------------------
 
