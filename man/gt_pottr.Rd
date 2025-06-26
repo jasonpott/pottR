@@ -15,8 +15,9 @@ gt_pottr(gt_tbl, footnote = NULL)
 A \code{gt} table object with custom styling applied.
 }
 \description{
-Applies standardized formatting to a \code{gt} table, including font size, padding, column title formatting,
-number rounding, character string percentage formatting, and an optional footnote.
+Applies standardized formatting to a \code{gt} table, including font size, padding,
+column title formatting, number rounding, character string percentage formatting,
+and an optional footnote.
 }
 \details{
 This function performs the following actions:
@@ -27,20 +28,5 @@ This function performs the following actions:
 \item Rounds numeric columns to 1 decimal place.
 \item Finds and formats percentages inside character columns to 1 decimal place using regex.
 \item Optionally adds a footnote to the table title.
-}
-}
-\examples{
-\dontrun{
-df <- data.frame(
-  patient_id = 1:3,
-  risk_score = c(0.836, 0.147, 0.953),
-  outcome_label = c("89.73\% (n = 105)", "7.01\% (n = 12)", "3.26\% (n = 5)")
-)
-
-gt_tbl <- gt::gt(df) |>
-  gt::tab_header(title = "Example Table")
-
-styled_tbl <- style_gt_table(gt_tbl, footnote = "Percentages formatted to 1 decimal place")
-styled_tbl
 }
 }

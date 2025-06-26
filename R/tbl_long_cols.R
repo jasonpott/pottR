@@ -1,18 +1,18 @@
-#' Retrieve a SQL table with columns ordered by data type
+#' Retrieve Column Names Ordered by SQL Data Type
 #'
-#' This function queries the column information of a given SQL Server table,
-#' sorts the columns by data type (descending), and returns a `dplyr::tbl` with
-#' columns reordered accordingly. This can be useful when visually scanning
-#' wide tables by prioritizing text columns first.
+#' This function queries the metadata of a given SQL Server table and returns a character
+#' vector of column names, ordered by their data type in descending order. This can be useful
+#' for controlling column selection or ordering in downstream queries (e.g., placing long text
+#' columns last).
 #'
-#' @param con A database connection object, typically from `odbc::dbConnect()`.
-#' @param table A character string specifying the name of the table to query.
+#' @param con A database connection object, typically created with `odbc::dbConnect()`.
+#' @param table A character string specifying the name of the SQL table to query.
 #'
-#' @return A `tbl` object representing the remote table with columns ordered by data type.
+#' @return A character vector of column names ordered by data type.
 #'
-#' @importFrom dplyr arrange pull select tbl desc
-#' @importFrom tidyselect all_of
+#' @importFrom dplyr arrange pull desc
 #' @importFrom odbc dbSendQuery dbColumnInfo
+#' @importFrom DBI dbClearResult
 #'
 #' @export
 tbl_long_cols <- function(con, table) {

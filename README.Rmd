@@ -2,7 +2,6 @@
 output: github_document
 ---
 
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -10,54 +9,65 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-
-devtools::build_readme()
 ```
 
 # pottR
 
 <!-- badges: start -->
 <!-- badges: end -->
-<img src="man/figures/logo.png" align="right" height="139" alt="hex logo for the pott R package. Hex include a flat colour image of the authors forehead, eyes and glasses with the R logo on the forehead" />
 
-pottR is a public personal package that brings together utility functions that I use in my work.
+<img src="man/figures/logo.png" align="right" height="139" alt="Hex logo for the pottR package. The hex contains a flat-colour image of the author's forehead, eyes, and glasses, with the R logo overlaid." />
 
-My goal with the package was to increase my familiarity with R package development while making my code easier to use in my day to day work.
+**pottR** is a personal utility package that brings together functions I regularly use in my work—primarily for data summarisation, presentation, and formatting.
 
+The aim of this package is twofold:
+- To simplify repetitive workflows in my day-to-day R projects.
+- To build confidence and familiarity with R package development best practices.
+
+---
 
 ## Installation
 
-You can install the development version of pottR from [GitHub](https://github.com/) with:
+You can install the development version of **pottR** directly from GitHub:
 
-``` r
+```r
+# Install devtools if not already installed
 # install.packages("devtools")
+
 devtools::install_github("jasonpott/pottR")
 ```
 
+---
+
 ## Example
 
-Below is an example of some of the functions and how they might be used.
+Below is an example showing several utility functions in action, applied to the built-in `mtcars` dataset.
 
 ```{r example}
 library(pottR)
+library(dplyr)
+library(gt)
 
 mtcars |>
   group_by(cyl) |>
   summarise(
-    mileage = pottR::mean_sd(mpg),
-    med_disp = pottR::med_iqr(disp),
-    pro_with_more_than_3_gears = pottR::prop_n_greater(
+    mileage = mean_sd(mpg),
+    med_disp = med_iqr(disp),
+    pro_with_more_than_3_gears = prop_n_greater(
       variable = gear,
       value_of_interest = 3,
-      rounding_value = 3
+      rounding_value = 1
     ),
-    pro_with_3_gears = pottR::prop_n(
+    pro_with_3_gears = prop_n(
       variable = gear,
       value_of_interest = 3,
-      rounding_value = 3
+      rounding_value = 1
     )
-  ) |>
-  gt::gt() |>
-  gt_pottr(footnote = "This is a footnote")
+  )
 ```
 
+---
+
+## License
+
+MIT © Jason Pott

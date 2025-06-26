@@ -1,7 +1,8 @@
 #' Style a `gt` Table with Custom Formatting
 #'
-#' Applies standardized formatting to a `gt` table, including font size, padding, column title formatting,
-#' number rounding, character string percentage formatting, and an optional footnote.
+#' Applies standardized formatting to a `gt` table, including font size, padding,
+#' column title formatting, number rounding, character string percentage formatting,
+#' and an optional footnote.
 #'
 #' @param gt_tbl A `gt` table object to be styled.
 #' @param footnote Optional character string. If provided, it is added as a footnote to the table title.
@@ -19,23 +20,9 @@
 #'
 #' @return A `gt` table object with custom styling applied.
 #'
-#' @importFrom gt tab_options tab_footnote tab_header cols_label fmt_number fmt cells_title px
+#' @importFrom gt tab_options tab_footnote cols_label fmt_number fmt cells_title px
+#' @importFrom dplyr where
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' df <- data.frame(
-#'   patient_id = 1:3,
-#'   risk_score = c(0.836, 0.147, 0.953),
-#'   outcome_label = c("89.73% (n = 105)", "7.01% (n = 12)", "3.26% (n = 5)")
-#' )
-#'
-#' gt_tbl <- gt::gt(df) |>
-#'   gt::tab_header(title = "Example Table")
-#'
-#' styled_tbl <- style_gt_table(gt_tbl, footnote = "Percentages formatted to 1 decimal place")
-#' styled_tbl
-#' }
 gt_pottr <- function(gt_tbl, footnote = NULL) {
 	# Format column labels: replace underscores and convert to sentence case
 	col_labels <- names(gt_tbl[["_data"]])
@@ -50,26 +37,30 @@ gt_pottr <- function(gt_tbl, footnote = NULL) {
 
 		# Format numeric columns to 1 decimal
 		gt::fmt_number(
-			columns = where(is.numeric),
+			columns = dplyr::where(is.numeric),
 			decimals = 1
-		) |>
+		)
 
-		# Format percentages in character columns
-		gt::fmt(
-			columns = where(is.character),
-			fns = function(x) {
-				gsub(
-					"(\\d+\\.?\\d*)%",
-					function(m) {
-						val <- round(as.numeric(sub("%", "", m)), 1)
-						paste0(val, "%")
-					},
-					x
-				)
-			}
-		) |>
+	# Conditionally format character columns with embedded percentages
+	if (any(vapply(gt_tbl[["_data"]], is.character, logical(1)))) {
+		gt_tbl <- gt_tbl |>
+			gt::fmt(
+				columns = dplyr::where(is.character),
+				fns = function(x) {
+					gsub(
+						"(\\d+\\.?\\d*)%",
+						function(m) {
+							val <- round(as.numeric(sub("%", "", m)), 1)
+							paste0(val, "%")
+						},
+						x
+					)
+				}
+			)
+	}
 
-		# Table styling
+	# Apply table styling
+	gt_tbl <- gt_tbl |>
 		gt::tab_options(
 			table.font.size = 12,
 			table.font.style = "calibri",
@@ -86,7 +77,8 @@ gt_pottr <- function(gt_tbl, footnote = NULL) {
 	if (!is.null(footnote)) {
 		gt_tbl <- gt_tbl |>
 			gt::tab_footnote(
-				footnote = footnote
+				footnote = footnote,
+				locations = gt::cells_title(groups = "title")
 			)
 	}
 
