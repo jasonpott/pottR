@@ -5,7 +5,7 @@
 
 <!-- badges: end -->
 
-<img src="man/figures/logo.png" align="right" height="139" alt="Hex logo for the pottR package. The hex contains a flat-colour image of the author's forehead, eyes, and glasses, with the R logo overlaid." />
+# pottR <img src="man/figures/logo.png" align="right" height="139" alt="Hex logo for the pottR package. The hex contains a flat-colour image of the author's forehead, eyes, and glasses, with the R logo overlaid." />
 
 **pottR** is a personal utility package that brings together functions I
 regularly use in my work—primarily for data summarisation, presentation,
@@ -27,6 +27,7 @@ GitHub:
 # install.packages("devtools")
 
 devtools::install_github("jasonpott/pottR")
+usethis::use_logo("pottr_hex.png")
 ```
 
 ------------------------------------------------------------------------
