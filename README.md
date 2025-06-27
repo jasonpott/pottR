@@ -41,7 +41,6 @@ to the built-in `mtcars` dataset.
 ``` r
 library(pottR)
 library(dplyr)
-#> Warning: package 'dplyr' was built under R version 4.4.3
 #> 
 #> Attaching package: 'dplyr'
 #> The following objects are masked from 'package:stats':
@@ -51,19 +50,18 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(gt)
-#> Warning: package 'gt' was built under R version 4.4.3
 
 mtcars |>
   group_by(cyl) |>
   summarise(
-    mileage = mean_sd(mpg),
-    med_disp = med_iqr(disp),
-    pro_with_more_than_3_gears = prop_n_greater(
+    mileage = pottR::mean_sd(mpg),
+    med_disp = pottR::med_iqr(disp),
+    pro_with_more_than_3_gears = pottR::prop_n_greater(
       variable = gear,
       value_of_interest = 3,
       rounding_value = 1
     ),
-    pro_with_3_gears = prop_n(
+    pro_with_3_gears = pottR::prop_n(
       variable = gear,
       value_of_interest = 3,
       rounding_value = 1

@@ -52,14 +52,14 @@ library(gt)
 mtcars |>
   group_by(cyl) |>
   summarise(
-    mileage = mean_sd(mpg),
-    med_disp = med_iqr(disp),
-    pro_with_more_than_3_gears = prop_n_greater(
+    mileage = pottR::mean_sd(mpg),
+    med_disp = pottR::med_iqr(disp),
+    pro_with_more_than_3_gears = pottR::prop_n_greater(
       variable = gear,
       value_of_interest = 3,
       rounding_value = 1
     ),
-    pro_with_3_gears = prop_n(
+    pro_with_3_gears = pottR::prop_n(
       variable = gear,
       value_of_interest = 3,
       rounding_value = 1

@@ -10,7 +10,7 @@ med_iqr(x)
 \item{x}{A numeric vector.}
 }
 \value{
-A character string formatted as "median \link{Q1 - Q3}".
+A character string formatted as \code{"median [Q1 - Q3]"}.
 }
 \description{
 Returns a formatted string showing the median and interquartile range (IQR) of a numeric vector.

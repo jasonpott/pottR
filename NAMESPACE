@@ -2,6 +2,7 @@
 
 export(dwh_connect)
 export(gt_pottr)
+export(list_rprofile_items)
 export(mean_sd)
 export(med_iqr)
 export(prop_n)

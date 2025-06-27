@@ -4,7 +4,7 @@
 #'
 #' @param x A numeric vector.
 #'
-#' @return A character string formatted as "median [Q1 - Q3]".
+#' @return A character string formatted as \code{"median [Q1 - Q3]"}.
 #' @export
 med_iqr <- function(x) {
 	a <- median(x, na.rm = TRUE)

@@ -58,3 +58,5 @@ inst/doc
 /doc/
 /Meta/
 dev
+R/list_rprofile_items.R
+man/list_rprofile_items.Rd
