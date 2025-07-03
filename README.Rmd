@@ -35,7 +35,6 @@ You can install the development version of **pottR** directly from GitHub:
 # install.packages("devtools")
 
 devtools::install_github("jasonpott/pottR")
-usethis::use_logo("pottr_hex.png")
 ```
 
 ---

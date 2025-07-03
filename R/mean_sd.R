@@ -5,6 +5,7 @@
 #' @param x A numeric vector.
 #'
 #' @return A character string formatted as "mean (SD)".
+#'
 #' @export
 mean_sd <- function(x) {
 	a <- mean(x, na.rm = TRUE)

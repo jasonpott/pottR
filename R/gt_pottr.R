@@ -22,6 +22,8 @@
 #'
 #' @importFrom gt tab_options tab_footnote cols_label fmt_number fmt cells_title px
 #' @importFrom dplyr where
+#' @importFrom tools toTitleCase
+#'
 #' @export
 gt_pottr <- function(gt_tbl, footnote = NULL) {
 	# Format column labels: replace underscores and convert to sentence case

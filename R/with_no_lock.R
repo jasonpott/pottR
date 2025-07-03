@@ -13,7 +13,9 @@
 #' with_no_lock("BH_DATAWAREHOUSE.dbo.PI_CDE_PERSON_PATIENT")
 #' # Returns: "BH_DATAWAREHOUSE.dbo.PI_CDE_PERSON_PATIENT WITH (NOLOCK)"
 #'
+#' @importFrom dbplyr sql
+#'
 #' @export
 with_no_lock <- function(table_name) {
-  return(dbplyr::sql(paste("SELECT * FROM", table_name, "WITH (NOLOCK)")))
+	return(dbplyr::sql(paste("SELECT * FROM", table_name, "WITH (NOLOCK)")))
 }

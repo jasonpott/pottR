@@ -7,6 +7,7 @@
 #' @param rounding_value Number of decimal places to round the percentage to.
 #'
 #' @return A character string formatted as "x% (n = y)".
+#'
 #' @export
 prop_n_greater <- function(variable, value_of_interest, rounding_value) {
 	percentage <- round(

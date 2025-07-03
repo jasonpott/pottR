@@ -14,13 +14,15 @@
 #' dbListTables(con)
 #' }
 #'
+#' @importFrom odbc dbConnect odbc
+#'
 #' @export
 dwh_connect <- function(x = Sys.getenv("TRUST_DWH")) {
-  con <- odbc::dbConnect(
-    odbc::odbc(),
-    Driver = "SQL Server",
-    Server = x,
-    Trusted_Connection = "True"
-  )
-  return(con)
+	con <- odbc::dbConnect(
+		odbc::odbc(),
+		Driver = "ODBC Driver 17 for SQL Server",
+		Trusted_Connection = "Yes",
+		Server = x,
+	)
+	return(con)
 }
